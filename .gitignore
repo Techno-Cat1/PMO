@@ -1,0 +1,30 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild/
+[Bb]uilds/
+[Oo]bj/
+[Mm]emoryCaptures/
+sysinfo.txt
+
+# Visual Studio
+.vscode/
+*.csproj
+*.sln
+*.user
+*.suo
+
+# Unity Collaborate
+.collabignore
+*.collab
+
+# Mac / Windows system files
+.DS_Store
+Thumbs.db
+g
+# Logs
+*.log
+
+# JetBrains Rider
+.idea/
+*.iml
