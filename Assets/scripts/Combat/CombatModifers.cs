@@ -2,7 +2,7 @@ namespace CoreCombat
 {
     public class Stats
     {
-        public int MaxHp, Atk, Def, SpAtk, SpDef, Speed;
+        public float MaxHp, Atk, Def, SpAtk, SpDef, Speed;
     }
 
     public class BattleContext
