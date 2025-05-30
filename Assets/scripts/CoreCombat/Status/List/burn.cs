@@ -4,8 +4,9 @@ namespace CoreCombat
 {
     public class Burn : IStatusEffect
     {
+        public Name => "Burn";
         public TypeElement Element => TypeElement.Fire;
-        public bool IsVolatile => false;
+        public int VolatileNess => 4;
 
         public EffectResult OnApply(BattleContext ctx)
         {

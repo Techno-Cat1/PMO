@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CoreCombat
 {
-    public enum MoveTypes
+    public enum MoveCategory
     {
         Aura,               // Aura and Pulse Moves
         Ball,               // Ball and Bomb Moves
@@ -38,23 +38,33 @@ namespace CoreCombat
         Choosen
     }
 
-
-    public class EffectResult
+    public enum FieldCategory
     {
-        public float RawValue;                   // General DMG
-        public float ElementalValue;             // Elemental Damage
-        public bool Success;
-        public int duration;
-        public Stats StatsChange;
+        Terrain,
+        Room,
+        Weather,
+        FieldHazard
     }
 
-    public interface IStatusEffect
+    public enum TypeElement
     {
-        TypeElement Element { get; }
-        bool IsVolatile { get; }
-        EffectResult OnApply(BattleContext ctx);
-        EffectResult OnTick(BattleContext ctx);
-        EffectResult OnExpire(BattleContext ctx);
+        Normal,
+        Fighting,
+        Flying,
+        Poison,
+        Ground,
+        Rock,
+        Bug,
+        Ghost,
+        Steel,
+        Fire,
+        Water,
+        Grass,
+        Electric,
+        Psychic,
+        Ice,
+        Dragon,
+        Dark,
+        Fairy
     }
-
 }

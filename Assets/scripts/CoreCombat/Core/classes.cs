@@ -1,28 +1,25 @@
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace CoreCombat
 {
 
-    public enum TypeElement
+
+    public class EffectResult
     {
-        Normal,
-        Fighting,
-        Flying,
-        Poison,
-        Ground,
-        Rock,
-        Bug,
-        Ghost,
-        Steel,
-        Fire,
-        Water,
-        Grass,
-        Electric,
-        Psychic,
-        Ice,
-        Dragon,
-        Dark,
-        Fairy
+        public float RawValue;                      // Normal DMG
+        public float ElementalValue;                // ElementalDamage
+        public bool Success;
+        public int duration;
+        public Stats StatsChange;
+
+        public static readonly EffectResult Zero = new EffectResult
+        {
+            RawValue = 0f,
+            ElementalValue = 0f,
+            Success = false,
+            duration = 0,
+            StatsChange = Stats.Zero
+        };
     }
 
     public static class TypeChart
@@ -445,5 +442,45 @@ namespace CoreCombat
         }
     }
 
-    
+    public class BattleContext
+    {
+        public Pokemon[] TeamA;
+        public Pokemon[] TeamB;
+
+        public FieldEffectManager FieldManager;     // terrain, meteo, room, etc.
+        public TurnInfo CurrentTurn;                // Who's turn is it?
+        public CombatLog History;                   // logs
+        public TargetingContext Targeting;          // Self Explanatory
+        public TempFlags Flags;                     // bools of turns
+        public Random Rng;                          // custom RNG
+    }
+
+    public class Terrain : IFieldEffect
+    {
+        public string Name => "";
+        public int Priority => 0;
+        public int duration = 0;
+        public FieldCategory FieldType => FieldCategory.Terrain;
+        EffectResult OnApply(BattleContext ctx)
+        {
+            foreach (Terrain T in ctx.Terrains)
+            {
+                if (T.Priority > this.Priority)
+                {
+                    ctx.Cancelled = true;
+                    return EffectResult.Zero;
+                } else if (T.Priority == this.Priority && )
+            }
+        }
+
+        EffectResult OnTick(BattleContext ctx);
+        EffectResult OnExpire(BattleContext ctx);
+    }
+
+    public class Pokemon
+    {
+        public string Name;
+        public int CurrentHP;
+        public Stats BaseStats = new Stats();
+    }
 }
